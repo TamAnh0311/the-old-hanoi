@@ -41,7 +41,6 @@ export class HeaderComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.isCollapsed = false;
     const scroll$ = fromEvent(window, 'scroll').pipe(
       throttleTime(10),
       map(() => window.pageYOffset),
