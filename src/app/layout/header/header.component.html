@@ -1,3 +1,31 @@
-<p>
-  header works!
-</p>
+
+<div class="container-fluid">
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top">
+        <a id="logo" routerLink="/home">HanoiXua</a>
+        <button class="navbar-toggler" type="button" (click)="isCollapsed = !isCollapsed" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav" [ngbCollapse]="isCollapsed">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" (click)="isCollapsed = !isCollapsed" routerLink="/home">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" (click)="isCollapsed = !isCollapsed" routerLink="/menu">Menu</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" (click)="isCollapsed = !isCollapsed" routerLink="/class">Class</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" (click)="isCollapsed = !isCollapsed" routerLink="/gallery">Gallery</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" (click)="isCollapsed = !isCollapsed" routerLink="/about">About Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" (click)="isCollapsed = !isCollapsed" href="#">Login</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>

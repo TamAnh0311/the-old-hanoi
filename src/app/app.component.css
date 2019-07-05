@@ -1,0 +1,71 @@
+/* universal */
+body {
+    margin-top: 30px;
+    padding: 0;
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    background-color: #fff8e6;
+    animation: myfadeInAnimation 2.3s;
+}
+  
+body h1{
+    font-size: 5em;
+}
+.container-fluid {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+/* center */
+.container {
+    margin:0;
+    padding:0;
+    width: 100%;
+}
+  
+section {
+    overflow: auto;
+}
+  
+textarea {
+    resize: vertical;
+}
+
+/* typhography */
+@font-face {
+    font-family: font1;
+    ;
+    src: url(../assets/fonts/Vnhltfap.ttf);
+    font-weight: bold;
+}
+  
+@font-face {
+    font-family: font2;
+    ;
+    src: url(../assets/fonts/UVNKieu_R.TTF);
+}
+  
+h1, h2, h3, h4, h5, h6 {
+    line-height: 1;
+}
+  
+h1 {
+    font-size: 3em;
+    letter-spacing: -2px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+  
+h2 {
+    font-size: 1.2em;
+    letter-spacing: -1px;
+    margin-bottom: 30px;
+    text-align: center;
+    font-weight: normal;
+    color: #777;
+}
+  
+p {
+    font-size: 1.1em;
+}
