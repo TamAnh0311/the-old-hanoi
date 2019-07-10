@@ -2,6 +2,8 @@
 <app-header></app-header>
 <section class="content">
     <div class="container-fluid">
-        <router-outlet></router-outlet>
+        <div [@routeAnimations]="prepareRoute(outlet)" >
+            <router-outlet #outlet="outlet"></router-outlet>
+          </div>
         <app-footer></app-footer>
     </div>

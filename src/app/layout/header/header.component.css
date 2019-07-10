@@ -50,7 +50,7 @@ nav {
 .navbar .navbar-nav .nav-item:hover {
     border: 1px solid;
     border-color: #FFB600;
-    color: white;
+    color: black;
 }
 
 :host {
@@ -59,3 +59,4 @@ nav {
     top: 0;
     width: 100%;
 }
+
