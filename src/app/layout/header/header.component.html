@@ -23,7 +23,8 @@
                     <a class="nav-link" (click)="isCollapsed = !isCollapsed" routerLink="/about">About Us</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" (click)="isCollapsed = !isCollapsed" href="#">Login</a>
+                    <a class="nav-link" *ngIf="!(user | async)?.uid" (click)="isCollapsed = !isCollapsed && openLoginDialog()" style="cursor: pointer; cursor: hand">Login</a>
+                    <a class="nav-link" *ngIf="(user | async)?.uid"(click)="isCollapsed = !isCollapsed && logOut()" style="cursor: pointer; cursor: hand">Logout</a>
                 </li>
             </ul>
         </div>

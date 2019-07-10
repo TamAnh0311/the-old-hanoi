@@ -12,13 +12,31 @@ import { MenuComponent } from './modules/menu/menu.component';
 import { ClassComponent } from './modules/class/class.component';
 import { AboutComponent } from './modules/about/about.component';
 import { UserComponent } from './user/user.component';
+import { UserLoginComponent } from './user/user-login/user-login.component';
+import { ReservationDialogComponent } from './modules/home//reservation-dialog/reservation-dialog.component';
+
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+
 import { environment } from '../environments/environment';
 import * as $ from 'jquery';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatTabsModule } from '@angular/material';
+import { MatTabsModule, MatNativeDateModule, MatSelectModule } from '@angular/material';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatStepperModule, MatInputModule, MatButtonModule, MatAutocompleteModule } from '@angular/material';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+
+import { AuthenticationGuardService } from './service/authentication-guard.service';
+import { ImageService } from './service/image.service';
+import { AuthenticationService } from './service/authentication.service';
+import { UploadService } from './service/upload.service';
+import { UploadComponent } from './upload/upload.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +49,10 @@ import { MatTabsModule } from '@angular/material';
     MenuComponent,
     ClassComponent,
     AboutComponent,
-    UserComponent
+    UserComponent,
+    UserLoginComponent,
+    ReservationDialogComponent,
+    UploadComponent
   ],
   imports: [
     BrowserModule,
@@ -39,11 +60,36 @@ import { MatTabsModule } from '@angular/material';
     NgbModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
+    AngularFireDatabaseModule,
+    AngularFireAuthModule,
     BrowserAnimationsModule,
-    MatTabsModule
+    MatTabsModule,
+    MatDialogModule,
+    MatStepperModule,
+    MatInputModule,
+    MatButtonModule,
+    MatAutocompleteModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatFormFieldModule,
+    MatSelectModule
   ],
-  providers: [],
+
+  exports: [
+    MatFormFieldModule,
+  ],
+  providers: [
+    AuthenticationGuardService,
+    ImageService,
+    AuthenticationService,
+    UploadService
+  ],
   bootstrap: [AppComponent],
-  
+  entryComponents: [
+    ReservationDialogComponent
+  ]
 })
+
 export class AppModule { }

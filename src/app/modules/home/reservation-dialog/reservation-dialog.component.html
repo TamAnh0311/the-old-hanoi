@@ -1,0 +1,93 @@
+<mat-horizontal-stepper linear #stepper>
+  <mat-step [stepControl]="information">
+    <form #information="ngForm">
+      <ng-template matStepLabel>Your Information</ng-template>
+      <div class="row">
+        <div class="col col-lg-6 col-md-6 col-sm-6 col-xl-6 col-6">
+          <mat-form-field>
+            <input matInput type="text" placeholder="Name" [(ngModel)]="name"  name="name" required>
+          </mat-form-field>
+        </div>
+        <div class="w-100 d-block d-sm-none"></div>
+        <div class="col col-lg-6 col-md-6 col-sm-6 col-xl-6 col-6">
+          <mat-form-field>
+            <input matInput type="text" placeholder=" Travel Angency" [(ngModel)]="agency"  name="agency">
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col col-lg-6 col-md-6 col-sm-6 col-xl-6 col-6">
+          <mat-form-field>
+            <input matInput type="number" placeholder="Mobile phone" [(ngModel)]="phone" name="phone" required>
+          </mat-form-field>
+        </div>
+        <div class="w-100 d-block d-sm-none"></div>
+        <div class="col col-lg-6 col-md-6 col-sm-6 col-xl-6 col-6">
+          <mat-form-field>
+            <input matInput type="text" placeholder="Email" [(ngModel)]="email" name="email" required>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="btn-dialog">
+        <button mat-button class="btn btn-outline-primary" [disabled]="!information.valid" matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="reservationDetail">
+    <form #reservationDetail="ngForm">
+      <ng-template matStepLabel>Reservation Detail</ng-template>
+      <div class="row">
+        <div class="col col-lg-6 col-md-6 col-sm-6 col-xl-6 col-6">
+          <mat-form-field>
+            <mat-select placeholder="Select your prefer seat" [(ngModel)]="seat" name="seat">
+              <mat-option value="inside">Inside</mat-option>
+              <mat-option value="outside">Outside</mat-option>
+              <mat-option value="terrace">Terrace</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="w-100 d-block d-sm-none"></div>
+        <div class="col col-lg-6 col-md-6 col-sm-6 col-xl-6 col-6">
+          <mat-form-field>
+            <input matInput type="number" placeholder="How many people" [(ngModel)]="people" name="people" required>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col col-lg-6 col-md-6 col-sm-6 col-xl-6 col-6">
+          <mat-form-field>
+            <input matInput [matDatepicker]="picker" placeholder="Choose a date" [(ngModel)]="date" name="date">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>          
+        </div>
+        <div class="w-100 d-block d-sm-none"></div>
+        <div class="col col-lg-6 col-md-6 col-sm-6 col-xl-6 col-6">
+            <mat-form-field>
+                <input matInput type="time" placeholder="What time" [(ngModel)]="time" name="time" required>
+              </mat-form-field>
+        </div>
+      </div>
+      <mat-form-field style="width: 100%">
+        <textarea matInput placeholder="Do you have any speacial request (food intolerant, vegan etc,.)" [(ngModel)]="specialRequest" name="specialRequest"></textarea>
+      </mat-form-field>
+      <div class="btn-dialog">
+        <button class="btn btn-outline-primary" mat-button matStepperPrevious>Back</button>
+        <button class="btn btn-outline-primary" mat-button matStepperNext (click)="btnReservation()" [disabled]="!reservationDetail.valid">Reservation!</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step >
+    <ng-template matStepLabel>Done</ng-template>
+    <h5 style="text-align: center; line-height: 1.5">
+      Thank you very much!.
+      <br>
+      Our staff will confirm your request as soon as possible via phone call or email.
+      <br>
+      Please check your mobile or email.
+    </h5>
+    <div class="btn-dialog">
+      <button class="btn btn-outline-primary" mat-button (click)="btnClose()">Got it !</button>
+    </div>
+  </mat-step>
+</mat-horizontal-stepper>

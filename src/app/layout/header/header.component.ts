@@ -1,7 +1,11 @@
-import { animate, state, style, transition, trigger} from '@angular/animations';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 import { AfterViewInit, Component, HostBinding, OnInit } from '@angular/core';
-import { fromEvent } from 'rxjs';
-import { distinctUntilChanged, filter, map, pairwise, share,  throttleTime } from 'rxjs/operators';
+import { fromEvent, Observable } from 'rxjs';
+import { distinctUntilChanged, filter, map, pairwise, share, throttleTime } from 'rxjs/operators';
+import { MatDialog } from '@angular/material/dialog';
+import { UserLoginComponent } from '../../user/user-login/user-login.component'
+import { AuthenticationService } from 'src/app/service/authentication.service';
+import { Router } from '@angular/router';
 
 enum VisibilityState {
   Visible = 'visible',
@@ -35,10 +39,17 @@ enum Direction {
 export class HeaderComponent implements AfterViewInit {
   isVisible = true;
   isCollapsed = false;
+  user: Observable<firebase.User>
   @HostBinding('@toggle')
   get toggle(): VisibilityState {
     return this.isVisible ? VisibilityState.Visible : VisibilityState.Hidden;
   }
+
+  constructor(
+    private loginDialog: MatDialog, 
+    private authService: AuthenticationService,
+    private router: Router
+  ) { }
 
   ngAfterViewInit() {
     const scroll$ = fromEvent(window, 'scroll').pipe(
@@ -61,4 +72,23 @@ export class HeaderComponent implements AfterViewInit {
     goingUp$.subscribe(() => (this.isVisible = true));
     goingDown$.subscribe(() => (this.isVisible = false));
   }
+
+  ngOnInit(): void {
+    this.user = this.authService.authUser();
+  }
+
+  logOut() {    
+    this.authService.logOut().then(onResolve => {
+      this.router.navigate['/']
+    });
+    console.log("logged out");
+  }
+
+  openLoginDialog() {
+    this.loginDialog.open(UserLoginComponent, {
+      height: 'auto',
+      width: 'auto',
+    });
+  }
+
 }
