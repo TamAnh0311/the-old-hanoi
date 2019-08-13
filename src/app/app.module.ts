@@ -17,14 +17,14 @@ import { ReservationDialogComponent } from './modules/home//reservation-dialog/r
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
-import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { AngularFireDatabaseModule } from '@angular/fire/database-deprecated';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 
 import { environment } from '../environments/environment';
 import * as $ from 'jquery';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatTabsModule, MatNativeDateModule, MatSelectModule } from '@angular/material';
+import { MatTabsModule, MatNativeDateModule, MatSelectModule, MatGridListModule } from '@angular/material';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatStepperModule, MatInputModule, MatButtonModule, MatAutocompleteModule } from '@angular/material';
@@ -36,6 +36,7 @@ import { ImageService } from './service/image.service';
 import { AuthenticationService } from './service/authentication.service';
 import { UploadService } from './service/upload.service';
 import { UploadComponent } from './upload/upload.component';
+import { PopUpComponent } from './modules/pop-up/pop-up.component';
 
 @NgModule({
   declarations: [
@@ -52,13 +53,14 @@ import { UploadComponent } from './upload/upload.component';
     UserComponent,
     UserLoginComponent,
     ReservationDialogComponent,
-    UploadComponent
+    UploadComponent,
+    PopUpComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
-    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireModule.initializeApp(  environment.firebase),
     AngularFirestoreModule,
     AngularFireDatabaseModule,
     AngularFireAuthModule,
@@ -74,7 +76,8 @@ import { UploadComponent } from './upload/upload.component';
     MatDatepickerModule,
     MatNativeDateModule,
     MatFormFieldModule,
-    MatSelectModule
+    MatSelectModule,
+    MatGridListModule
   ],
 
   exports: [
@@ -84,12 +87,14 @@ import { UploadComponent } from './upload/upload.component';
     AuthenticationGuardService,
     ImageService,
     AuthenticationService,
-    UploadService
+    UploadService,
   ],
   bootstrap: [AppComponent],
   entryComponents: [
-    ReservationDialogComponent
+    ReservationDialogComponent,
+    UploadComponent,
+    PopUpComponent
   ]
 })
-
+  
 export class AppModule { }

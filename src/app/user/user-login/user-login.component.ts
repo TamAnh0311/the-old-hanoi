@@ -32,11 +32,11 @@ export class UserLoginComponent implements OnInit {
     this.authService.logIn({ email: this.username, password: this.password })
       .then(resove => {
         this.router.navigate(['gallery'])
-          .catch(error => { this.errorMsg = error.message })
-          this.btnClose();
-          console.log(this.errorMsg);
-          
+        this.btnClose();
       })
-      console.log("logged in");
+      .catch(error => {
+        console.log("error", error)
+        this.errorMsg = error.code;
+      });;
   }
 }
