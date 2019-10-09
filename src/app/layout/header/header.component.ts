@@ -6,6 +6,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { UserLoginComponent } from '../../user/user-login/user-login.component'
 import { AuthenticationService } from 'src/app/service/authentication.service';
 import { Router } from '@angular/router';
+import { UploadComponent } from 'src/app/upload/upload.component';
+import { PopUpComponent } from 'src/app/modules/pop-up/pop-up.component';
 
 enum VisibilityState {
   Visible = 'visible',
@@ -39,6 +41,7 @@ enum Direction {
 export class HeaderComponent implements AfterViewInit {
   isVisible = true;
   isCollapsed = false;
+  isManager = false;
   user: Observable<firebase.User>
   @HostBinding('@toggle')
   get toggle(): VisibilityState {
@@ -46,7 +49,7 @@ export class HeaderComponent implements AfterViewInit {
   }
 
   constructor(
-    private loginDialog: MatDialog, 
+    private dialog: MatDialog,
     private authService: AuthenticationService,
     private router: Router
   ) { }
@@ -61,6 +64,7 @@ export class HeaderComponent implements AfterViewInit {
       share()
     );
 
+
     const goingUp$ = scroll$.pipe(
       filter(direction => direction === Direction.Up)
     );
@@ -69,7 +73,7 @@ export class HeaderComponent implements AfterViewInit {
       filter(direction => direction === Direction.Down)
     );
 
-    goingUp$.subscribe(() => (this.isVisible = true));
+    goingUp$.subscribe(() => (this.isVisible = true, this.isCollapsed = true));
     goingDown$.subscribe(() => (this.isVisible = false));
   }
 
@@ -77,15 +81,30 @@ export class HeaderComponent implements AfterViewInit {
     this.user = this.authService.authUser();
   }
 
-  logOut() {    
-    this.authService.logOut().then(onResolve => {
-      this.router.navigate['/']
+  logOut() {
+    const PopupDialogRef = this.dialog.open(PopUpComponent, {
+      height: 'auto',
+      width: 'auto',
+      data: 'Are you sure you want to log out ?'
     });
-    console.log("logged out");
+    PopupDialogRef.afterClosed().subscribe((result) => {
+      if (result === true) {
+        this.authService.logOut().then(() => {
+          this.router.navigate['/']
+        });
+      }
+    })
   }
 
   openLoginDialog() {
-    this.loginDialog.open(UserLoginComponent, {
+    this.dialog.open(UserLoginComponent, {
+      height: 'auto',
+      width: 'auto',
+    });
+  }
+
+  openUploadDialog() {
+    this.dialog.open(UploadComponent, {
       height: 'auto',
       width: 'auto',
     });

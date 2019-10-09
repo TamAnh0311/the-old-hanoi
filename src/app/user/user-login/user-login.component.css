@@ -1,3 +1,6 @@
+.login-dialog {
+    padding:10pxx!important;
+}
 .login-dialog th {
     vertical-align: middle!important;
     border-top: none!important;
@@ -6,4 +9,9 @@
 .btn-login {
     text-align: center;
     margin-top: 0.5rem;
+    margin-bottom: 10px;
+}
+
+.input-box {
+    width:  100rem!important;
 }

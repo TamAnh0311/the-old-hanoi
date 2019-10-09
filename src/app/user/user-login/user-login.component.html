@@ -1,10 +1,9 @@
-<div>
   <form #loginForm="ngForm">
     <table class="table login-dialog">
       <tr>
         <th>UserName</th>
         <th>
-          <mat-form-field>
+          <mat-form-field class="input-box">
             <input matInput type="text" placeholder="Username" [(ngModel)]="username" name="username" required>
           </mat-form-field>
         </th>
@@ -12,7 +11,7 @@
       <tr>
         <th>Password</th>
         <th>
-          <mat-form-field>
+          <mat-form-field class="input-box">
             <input matInput type="password" placeholder="Password" [(ngModel)]="password" name="password" required>
           </mat-form-field>
         </th>
@@ -22,8 +21,7 @@
     </table>
   </form>
   <div class="btn-login">
-    <p class="text-danger" >{{errorMsg}}</p>
-    <button class="btn btn-outline-primary" mat-button (click)="btnClose()">Cancel</button>
-    <button class="btn btn-outline-primary" mat-button (click)="btnLogin()" [disabled]="!loginForm.valid">Login</button>
+    <p class="text-danger">{{errorMsg}}</p>
+    <button class="btn btn-outline-primary btn-login" mat-button (click)="btnClose()">Cancel</button>
+    <button class="btn btn-outline-primary btn-login" mat-button (click)="btnLogin()" [disabled]="!loginForm.valid">Login</button>
   </div>
-</div>
